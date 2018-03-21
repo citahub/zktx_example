@@ -358,6 +358,9 @@ fn round_test(){
         println!("This coin is not mine");
     }
 
+    println!("wait for a while ...");
+    sleep(Duration::new(10, 0));
+
     let current_block_number = get_block_number(&cita, &mut event_loop);
     let (bob_send_message,bob_private_send_message) = bob.send([200,0],[rng.gen(),rng.gen()],alice.get_address(), current_block_number);
     //verify_send(&mut bob_send_message,&mut bob);
@@ -376,14 +379,14 @@ fn round_test(){
             continue;
         }
         logs = ret.unwrap();
-        if logs.len() > 0 {
-            println!("got logs! data len {}", logs[0].data.0.len());
+        if logs.len() > 1 {
+            println!("got logs! data len {}", logs[1].data.0.len());
             break;
         }
         println!("wait for log ...");
         sleep(Duration::new(3, 0));
     }
-    let log_data = &logs[0].data.0;
+    let log_data = &logs[1].data.0;
     let coin = String::from_utf8(log_data.get(0..64).unwrap().to_vec()).unwrap();
     println!("coin in log {}", coin);
     let enc = String::from_utf8(log_data.get(64..64+192).unwrap().to_vec()).unwrap();
