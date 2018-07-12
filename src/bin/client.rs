@@ -170,7 +170,7 @@ fn set_balance(cita: &Cita<Http>, event_loop: &mut Core, account: &[Cita_Account
     let tx = cita.generate_tx(
         &account[0].secret,
         data,
-        "0x0000000000000000000000000000000012345678".to_string(),
+        "0xffffffffffffffffffffffffffffffffff030001".to_string(),
         number,
         100000,
         "abcd".to_string(),
@@ -198,7 +198,7 @@ fn send_verify(cita: &Cita<Http>, event_loop: &mut Core, account: &[Cita_Account
     let tx = cita.generate_tx(
         &account[0].secret,
         data,
-        "0x0000000000000000000000000000000012345678".to_string(),
+        "0xffffffffffffffffffffffffffffffffff030001".to_string(),
         number,
         11000000,
         "send_verify".to_string(),
@@ -226,7 +226,7 @@ fn receive_verify(cita: &Cita<Http>, event_loop: &mut Core, account: &[Cita_Acco
     let tx = cita.generate_tx(
         &account[0].secret,
         data,
-        "0x0000000000000000000000000000000012345678".to_string(),
+        "0xffffffffffffffffffffffffffffffffff030001".to_string(),
         number,
         11000000,
         "receive_verify".to_string(),
@@ -264,7 +264,7 @@ fn round_test(){
     // install filter
     let current_block_number = get_block_number(&cita, &mut event_loop);
     let eth_filter = web3.eth_filter();
-    let filter = FilterBuilder::default().address(vec![H160::from_str("0x0000000000000000000000000000000012345678").unwrap()])
+    let filter = FilterBuilder::default().address(vec![H160::from_str("0xffffffffffffffffffffffffffffffffff030001").unwrap()])
         .topics(Some(vec![H256::from_str("0xc73b5a8f31a1a078a14123cc93687f4a59389c76caf88d5d2154d3f3ce25ff49").unwrap()]), None, None, None)
         .from_block(BlockNumber::Number(current_block_number))
         .build();
