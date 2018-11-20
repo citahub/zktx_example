@@ -4,13 +4,8 @@ version = "0.0.1"
 
 [dependencies]
 rand = "0.3"
-tokio-core = "*"
-protobuf = { version = "^1.0.0" }
 rustc-hex = "1.0"
-
-[dependencies.web3]
-git = "https://github.com/cryptape/rust-web3.git"
-branch = "master"
+cita-tool = { git = "https://github.com/cryptape/cita-cli.git", branch = "master" }
 
 [dependencies.zktx]
 git = "https://github.com/cryptape/zktx.git"
