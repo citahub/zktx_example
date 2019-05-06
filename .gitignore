@@ -3,3 +3,6 @@
 **/*.rs.bk
 cmake-build-debug/
 .idea/
+
+## params
+/PARAMS/
