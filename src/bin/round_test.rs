@@ -193,31 +193,27 @@ impl Account {
 }
 
 fn verify_send(message: &mut SendMessage, sender: &mut Account) {
-    assert!(
-        p2c_verify(
-            sender.get_balance(),
-            message.coin.clone(),
-            message.delt_ba.clone(),
-            message.enc.clone(),
-            sender.address.clone(),
-            message.proof.clone()
-        )
-        .unwrap()
-    );
+    assert!(p2c_verify(
+        sender.get_balance(),
+        message.coin.clone(),
+        message.delt_ba.clone(),
+        message.enc.clone(),
+        sender.address.clone(),
+        message.proof.clone()
+    )
+    .unwrap());
     message.on_chain();
     sender.sub_balance(message.delt_ba.clone());
 }
 
 fn verify_receive(message: &mut ReceiveMessage, receiver: &mut Account) {
-    assert!(
-        c2p_verify(
-            message.nullifier.clone(),
-            message.root.clone(),
-            message.delt_ba.clone(),
-            message.proof.clone()
-        )
-        .unwrap()
-    );
+    assert!(c2p_verify(
+        message.nullifier.clone(),
+        message.root.clone(),
+        message.delt_ba.clone(),
+        message.proof.clone()
+    )
+    .unwrap());
     message.on_chain();
     receiver.add_balance(message.delt_ba.clone());
 }
